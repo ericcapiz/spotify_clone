@@ -8,6 +8,7 @@ import './Sidebar.css';
 
 const Sidebar = () => {
     const[{playlists}, dispatch] = useDataLayerValue();
+    
     return (
         <div className="sidebar">
             <img className="sidebar__logo" src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg" alt="sidebar"/>
@@ -18,8 +19,10 @@ const Sidebar = () => {
             <strong className="sidebar__title">Playlists</strong>
             <hr />
             {playlists?.items?.map((playlist) => (
+                
                 <SidebarOption key={playlist.name} title={playlist.name} />
             ))}
+            
         </div>
     )
 }
