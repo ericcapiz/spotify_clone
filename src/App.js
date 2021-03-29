@@ -10,7 +10,7 @@ const spotify = new SpotifyWebApi();
 
 function App() {
   const [{user, token}, dispatch] = useDataLayerValue();
-
+  
   useEffect(() => {
     const hash = getTokenFromUrl();
     window.location.hash="";
@@ -34,12 +34,20 @@ function App() {
           user: user,
         })
       })
+
       spotify.getUserPlaylists().then((playlists) => {
         dispatch({
           type:"SET_PLAYLISTS",
           playlists: playlists,
         })
       })
+
+      spotify.getPlaylist('73BKQsoelbiGbxdqbTYOod').then((response) =>
+        dispatch({
+          type: "SET_DISCOVER_WEEKLY",
+          discover_weekly: response,
+        })
+      )
     }
   },[]);
 
