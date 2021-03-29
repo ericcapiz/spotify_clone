@@ -5,7 +5,7 @@ import  SearchIcon  from '@material-ui/icons/Search';
 import './Header.css';
 
 const Header = ({spotify}) => {
-    const[{user, search}, dispatch] = useDataLayerValue();
+    const[{user, search}] = useDataLayerValue();
 
 
 
