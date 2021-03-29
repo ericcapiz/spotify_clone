@@ -6,6 +6,7 @@
     overflow-y: overlay;
     flex: 0.8;
     color: white;
+    overflow-y: overlay;
     background: linear-gradient(transparent, rgba(0, 0, 0, 1));
     background-color: rgb(91, 87, 115);
   }
@@ -27,6 +28,11 @@
     margin-bottom: 20px;
   }
   
+  .body__shuffle:hover {
+    transition: 100ms transform ease-in;
+    transform: scale(1.08);
+  }
+
   .body__icons {
     display: flex;
     align-items: center;
@@ -36,10 +42,6 @@
     margin-right: 20px;
   }
   
-  .body__shuffle:hover {
-    transition: 100ms transform ease-in;
-    transform: scale(1.08);
-  }
   
   .body__background {
     position: absolute;

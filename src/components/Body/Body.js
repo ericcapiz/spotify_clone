@@ -1,8 +1,9 @@
 import React from 'react';
+import { useDataLayerValue } from '../State/DataLayer';
 import Header from '../Header/Header';
+import SongRow from '../SongRow/SongRow';
 import FavoriteIcon  from '@material-ui/icons/Favorite';
 import  PlayCircleFilledIcon  from '@material-ui/icons/PlayCircleFilled';
-import { useDataLayerValue } from '../State/DataLayer';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import './Body.css';
 
@@ -16,17 +17,20 @@ const Body = ({spotify}) => {
             <div className="body__info">
                <img src={discover_weekly?.images[0].url} />
                 <div className="body__infoText">
-                    <strong>PLAYLIST</strong>
+                    <strong>PLAYLIST :</strong>
                     <h2>{discover_weekly?.name}</h2>
                     <p>{discover_weekly?.description}</p>
                 </div>
             </div>
             <div className="body__songs">
             <div className="body__icons">
-                <PlayCircleFilledIcon />
-                <FavoriteIcon />
+                <PlayCircleFilledIcon className="body__shuffle" />
+                <FavoriteIcon fontSize="large" />
                 <MoreHorizIcon />
             </div>
+            {discover_weekly?.tracks.items.map(item =>(
+                <SongRow key={item.track} track={item.track} />
+            ))}
             </div>
         </div>
     )
