@@ -1,13 +1,33 @@
 import React from 'react';
 import './SidebarOption.css';
+import { useDataLayerValue } from "../State/DataLayer";
 
-const SidebarOption = ({title, Icon}) => {
+function SidebarOption({ title, Icon, id }) {
+    const [{ spotify, discover_weekly }, dispatch] = useDataLayerValue();
+    const handleClick = () => {
+      if (id) {
+        spotify.getPlaylist(id).then((response) => {
+          dispatch({
+            type: "SET_DISCOVER_WEEKLY",
+            discover_weekly: response,
+          });
+        });
+      }
+    };
+    const goHome = () => {
+      if (discover_weekly) {
+        dispatch({
+          type: "SET_DISCOVER_WEEKLY",
+          discover_weekly: false,
+        });
+      }
+    };
     return (
-        <div className="sidebarOption">
-            {Icon && <Icon className="sidebarOption__icon" />}
-            {Icon ? <h4>{title}</h4> : <p>{title}</p>}
-        </div>
-    )
-}
-
-export default SidebarOption
+      <div className="sidebarOption" onClick={handleClick}>
+        {Icon && <Icon className="sidebarOption__icon" />}
+        {Icon ? <h4 onClick={goHome}>{title}</h4> : <p> {title}</p>}
+      </div>
+    );
+  }
+  
+  export default SidebarOption;

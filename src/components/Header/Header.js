@@ -4,12 +4,15 @@ import { Avatar } from '@material-ui/core';
 import  SearchIcon  from '@material-ui/icons/Search';
 import './Header.css';
 
-const Header = () => {
-    const[{user}, dispatch] = useDataLayerValue();
+const Header = ({spotify}) => {
+    const[{user, search}, dispatch] = useDataLayerValue();
+
+
+
     return (
         <div className="header">
             <div className="header__left">
-                <SearchIcon />
+                <SearchIcon value={search}  />
                 <input placeholder="Search for Artists, Songs, or Podcasts" type="text" />
             </div>
             <div className="header__right">
